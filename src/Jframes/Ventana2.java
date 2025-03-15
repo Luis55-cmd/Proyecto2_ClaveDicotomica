@@ -28,7 +28,7 @@ public class Ventana2 extends javax.swing.JFrame {
         initComponents();
 
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
-        setResizable(false); // Impide cambiar la dimension de la ventana
+        //setResizable(false); // Impide cambiar la dimension de la ventana
         setTitle("Clave Dicotómica");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         // Crear el árbol y la interfaz
@@ -61,15 +61,7 @@ public class Ventana2 extends javax.swing.JFrame {
         PanelIzquierda = new javax.swing.JPanel();
         BotonSi = new javax.swing.JButton();
         BotonNo = new javax.swing.JButton();
-        BotonCargarArchivo = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         PreguntasTexto = new javax.swing.JTextField();
-        BotonMostrarArbol = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        BotonReiniciar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        BotonReiniciar1 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         PanelDerecha = new javax.swing.JPanel();
         InformacionPlantas = new javax.swing.JTextField();
@@ -80,117 +72,171 @@ public class Ventana2 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Tiempo = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        MenuOpciones = new javax.swing.JMenu();
+        MenuCargarArchivo = new javax.swing.JMenuItem();
+        MenuMostrarArbol = new javax.swing.JMenuItem();
+        MenuReiniciar = new javax.swing.JMenuItem();
+        MenuBuscar = new javax.swing.JMenuItem();
+        MenuAyuda = new javax.swing.JMenu();
+        MenuIntegrantes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        PanelIzquierda.setBackground(new java.awt.Color(246, 229, 229));
         PanelIzquierda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        BotonSi.setBackground(new java.awt.Color(102, 51, 0));
+        BotonSi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BotonSi.setForeground(new java.awt.Color(255, 255, 255));
         BotonSi.setText("SI");
         BotonSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSiActionPerformed(evt);
             }
         });
-        PanelIzquierda.add(BotonSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 80, 40));
+        PanelIzquierda.add(BotonSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 80, 40));
 
+        BotonNo.setBackground(new java.awt.Color(102, 51, 0));
+        BotonNo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BotonNo.setForeground(new java.awt.Color(255, 255, 255));
         BotonNo.setText("NO");
         BotonNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonNoActionPerformed(evt);
             }
         });
-        PanelIzquierda.add(BotonNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 80, 40));
+        PanelIzquierda.add(BotonNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 80, 40));
 
-        BotonCargarArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonCargarArchivoActionPerformed(evt);
-            }
-        });
-        PanelIzquierda.add(BotonCargarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 70));
-
-        jLabel1.setText("Cargar Archivo");
-        PanelIzquierda.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
-
+        PreguntasTexto.setBackground(new java.awt.Color(173, 205, 173));
+        PreguntasTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        PreguntasTexto.setForeground(new java.awt.Color(0, 0, 0));
         PreguntasTexto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         PreguntasTexto.setFocusable(false);
-        PanelIzquierda.add(PreguntasTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 480, 120));
+        PanelIzquierda.add(PreguntasTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 480, 120));
 
-        BotonMostrarArbol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonMostrarArbolActionPerformed(evt);
-            }
-        });
-        PanelIzquierda.add(BotonMostrarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 70, 70));
-
-        jLabel2.setText("Mostrar Arbol");
-        PanelIzquierda.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, -1, -1));
-
-        BotonReiniciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonReiniciarActionPerformed(evt);
-            }
-        });
-        PanelIzquierda.add(BotonReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 70, 70));
-
-        jLabel5.setText("Reiniciar");
-        PanelIzquierda.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, -1, -1));
-
-        BotonReiniciar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonReiniciar1ActionPerformed(evt);
-            }
-        });
-        PanelIzquierda.add(BotonReiniciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 70, 70));
-
-        jLabel7.setText("Buscar");
-        PanelIzquierda.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, -1, -1));
-
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 102, 0));
         jLabel8.setText("Clave Dicotómica");
-        PanelIzquierda.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
+        jLabel8.setToolTipText("");
+        PanelIzquierda.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
-        getContentPane().add(PanelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 550));
+        getContentPane().add(PanelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 320));
 
+        PanelDerecha.setBackground(new java.awt.Color(246, 229, 229));
+        PanelDerecha.setForeground(new java.awt.Color(0, 0, 0));
         PanelDerecha.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        InformacionPlantas.setBackground(new java.awt.Color(173, 205, 173));
+        InformacionPlantas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        InformacionPlantas.setForeground(new java.awt.Color(0, 0, 0));
         InformacionPlantas.setFocusable(false);
         InformacionPlantas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InformacionPlantasActionPerformed(evt);
             }
         });
-        PanelDerecha.add(InformacionPlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 250, 340));
+        PanelDerecha.add(InformacionPlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 340, 140));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 102, 0));
         jLabel4.setText("Información de la especie:");
-        PanelDerecha.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+        PanelDerecha.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
 
+        BotonBuscarArbol.setBackground(new java.awt.Color(102, 51, 0));
+        BotonBuscarArbol.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BotonBuscarArbol.setForeground(new java.awt.Color(255, 255, 255));
         BotonBuscarArbol.setText("Árbol");
         BotonBuscarArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBuscarArbolActionPerformed(evt);
             }
         });
-        PanelDerecha.add(BotonBuscarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 70, -1));
+        PanelDerecha.add(BotonBuscarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 90, -1));
 
+        BotonBuscarHash.setBackground(new java.awt.Color(102, 51, 0));
+        BotonBuscarHash.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BotonBuscarHash.setForeground(new java.awt.Color(255, 255, 255));
         BotonBuscarHash.setText("Hash");
         BotonBuscarHash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBuscarHashActionPerformed(evt);
             }
         });
-        PanelDerecha.add(BotonBuscarHash, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 60, -1));
-        PanelDerecha.add(BuscarNombrePlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, -1));
+        PanelDerecha.add(BotonBuscarHash, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 90, -1));
 
+        BuscarNombrePlanta.setBackground(new java.awt.Color(173, 205, 173));
+        BuscarNombrePlanta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BuscarNombrePlanta.setForeground(new java.awt.Color(0, 0, 0));
+        PanelDerecha.add(BuscarNombrePlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 150, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 102, 0));
         jLabel6.setText("Buscar por nombre de la especie:");
-        PanelDerecha.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        PanelDerecha.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 102, 0));
         jLabel3.setText("Tiempo para encontrar la información: ");
-        PanelDerecha.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        PanelDerecha.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
+        Tiempo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Tiempo.setForeground(new java.awt.Color(51, 102, 0));
         Tiempo.setText("15");
-        PanelDerecha.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 70, -1));
+        PanelDerecha.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 70, -1));
 
-        getContentPane().add(PanelDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 290, 550));
+        getContentPane().add(PanelDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 320));
+
+        jMenuBar1.setBackground(new java.awt.Color(246, 229, 229));
+        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
+
+        MenuOpciones.setText("Opciones");
+        MenuOpciones.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        MenuCargarArchivo.setText("Cargar Archivo");
+        MenuCargarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCargarArchivoActionPerformed(evt);
+            }
+        });
+        MenuOpciones.add(MenuCargarArchivo);
+
+        MenuMostrarArbol.setText("Mostrar Arbol");
+        MenuMostrarArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMostrarArbolActionPerformed(evt);
+            }
+        });
+        MenuOpciones.add(MenuMostrarArbol);
+
+        MenuReiniciar.setText("Reiniciar");
+        MenuReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuReiniciarActionPerformed(evt);
+            }
+        });
+        MenuOpciones.add(MenuReiniciar);
+
+        MenuBuscar.setText("Buscar");
+        MenuBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuBuscarActionPerformed(evt);
+            }
+        });
+        MenuOpciones.add(MenuBuscar);
+
+        jMenuBar1.add(MenuOpciones);
+
+        MenuAyuda.setText("Ayuda");
+        MenuAyuda.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        MenuIntegrantes.setText("Integrantes");
+        MenuAyuda.add(MenuIntegrantes);
+
+        jMenuBar1.add(MenuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -274,23 +320,23 @@ public class Ventana2 extends javax.swing.JFrame {
         siguientePregunta(false);
     }//GEN-LAST:event_BotonNoActionPerformed
 
-    private void BotonMostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMostrarArbolActionPerformed
-        VisualizadorArbol visualizador = new VisualizadorArbol();
-        visualizador.mostrarArbol(arbol.getRaiz());
-    }//GEN-LAST:event_BotonMostrarArbolActionPerformed
-
-    private void BotonCargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCargarArchivoActionPerformed
-        cargarNuevaClave();
-    }//GEN-LAST:event_BotonCargarArchivoActionPerformed
-
-    private void BotonReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonReiniciarActionPerformed
-        reiniciarBusqueda();
-    }//GEN-LAST:event_BotonReiniciarActionPerformed
-
-    private void BotonReiniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonReiniciar1ActionPerformed
+    private void MenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBuscarActionPerformed
         PanelDerecha.setVisible(true);
         PanelIzquierda.setVisible(false);
-    }//GEN-LAST:event_BotonReiniciar1ActionPerformed
+    }//GEN-LAST:event_MenuBuscarActionPerformed
+
+    private void MenuCargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCargarArchivoActionPerformed
+        cargarNuevaClave();
+    }//GEN-LAST:event_MenuCargarArchivoActionPerformed
+
+    private void MenuMostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMostrarArbolActionPerformed
+        VisualizadorArbol visualizador = new VisualizadorArbol();
+        visualizador.mostrarArbol(arbol.getRaiz());
+    }//GEN-LAST:event_MenuMostrarArbolActionPerformed
+
+    private void MenuReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuReiniciarActionPerformed
+        reiniciarBusqueda();
+    }//GEN-LAST:event_MenuReiniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,25 +380,25 @@ public class Ventana2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarArbol;
     private javax.swing.JButton BotonBuscarHash;
-    private javax.swing.JButton BotonCargarArchivo;
-    private javax.swing.JButton BotonMostrarArbol;
     private javax.swing.JButton BotonNo;
-    private javax.swing.JButton BotonReiniciar;
-    private javax.swing.JButton BotonReiniciar1;
     private javax.swing.JButton BotonSi;
     private javax.swing.JTextField BuscarNombrePlanta;
     private javax.swing.JTextField InformacionPlantas;
+    private javax.swing.JMenu MenuAyuda;
+    private javax.swing.JMenuItem MenuBuscar;
+    private javax.swing.JMenuItem MenuCargarArchivo;
+    private javax.swing.JMenuItem MenuIntegrantes;
+    private javax.swing.JMenuItem MenuMostrarArbol;
+    private javax.swing.JMenu MenuOpciones;
+    private javax.swing.JMenuItem MenuReiniciar;
     private javax.swing.JPanel PanelDerecha;
     private javax.swing.JPanel PanelIzquierda;
     private javax.swing.JTextField PreguntasTexto;
     private javax.swing.JLabel Tiempo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
