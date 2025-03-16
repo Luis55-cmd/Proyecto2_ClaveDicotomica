@@ -42,7 +42,7 @@ public class Ventana2 extends javax.swing.JFrame {
             this.actual = arbol.getRaiz();
             PreguntasTexto.setText(actual.pregunta);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al cargar el archivo JSON: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al cargar el archivo JSON: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         PanelDerecha.setVisible(false);
@@ -58,11 +58,6 @@ public class Ventana2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelIzquierda = new javax.swing.JPanel();
-        BotonSi = new javax.swing.JButton();
-        BotonNo = new javax.swing.JButton();
-        PreguntasTexto = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         PanelDerecha = new javax.swing.JPanel();
         InformacionPlantas = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -72,8 +67,14 @@ public class Ventana2 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Tiempo = new javax.swing.JLabel();
+        PanelIzquierda = new javax.swing.JPanel();
+        BotonSi = new javax.swing.JButton();
+        BotonNo = new javax.swing.JButton();
+        PreguntasTexto = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuOpciones = new javax.swing.JMenu();
+        MenuInicio = new javax.swing.JMenuItem();
         MenuCargarArchivo = new javax.swing.JMenuItem();
         MenuMostrarArbol = new javax.swing.JMenuItem();
         MenuReiniciar = new javax.swing.JMenuItem();
@@ -83,46 +84,6 @@ public class Ventana2 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        PanelIzquierda.setBackground(new java.awt.Color(246, 229, 229));
-        PanelIzquierda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        BotonSi.setBackground(new java.awt.Color(102, 51, 0));
-        BotonSi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        BotonSi.setForeground(new java.awt.Color(255, 255, 255));
-        BotonSi.setText("SI");
-        BotonSi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSiActionPerformed(evt);
-            }
-        });
-        PanelIzquierda.add(BotonSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 80, 40));
-
-        BotonNo.setBackground(new java.awt.Color(102, 51, 0));
-        BotonNo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        BotonNo.setForeground(new java.awt.Color(255, 255, 255));
-        BotonNo.setText("NO");
-        BotonNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonNoActionPerformed(evt);
-            }
-        });
-        PanelIzquierda.add(BotonNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 80, 40));
-
-        PreguntasTexto.setBackground(new java.awt.Color(173, 205, 173));
-        PreguntasTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        PreguntasTexto.setForeground(new java.awt.Color(0, 0, 0));
-        PreguntasTexto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        PreguntasTexto.setFocusable(false);
-        PanelIzquierda.add(PreguntasTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 480, 120));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 102, 0));
-        jLabel8.setText("Clave Dicotómica");
-        jLabel8.setToolTipText("");
-        PanelIzquierda.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
-
-        getContentPane().add(PanelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 320));
 
         PanelDerecha.setBackground(new java.awt.Color(246, 229, 229));
         PanelDerecha.setForeground(new java.awt.Color(0, 0, 0));
@@ -148,6 +109,7 @@ public class Ventana2 extends javax.swing.JFrame {
         BotonBuscarArbol.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         BotonBuscarArbol.setForeground(new java.awt.Color(255, 255, 255));
         BotonBuscarArbol.setText("Árbol");
+        BotonBuscarArbol.setFocusPainted(false);
         BotonBuscarArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBuscarArbolActionPerformed(evt);
@@ -159,6 +121,7 @@ public class Ventana2 extends javax.swing.JFrame {
         BotonBuscarHash.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         BotonBuscarHash.setForeground(new java.awt.Color(255, 255, 255));
         BotonBuscarHash.setText("Hash");
+        BotonBuscarHash.setFocusPainted(false);
         BotonBuscarHash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonBuscarHashActionPerformed(evt);
@@ -188,11 +151,63 @@ public class Ventana2 extends javax.swing.JFrame {
 
         getContentPane().add(PanelDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 320));
 
-        jMenuBar1.setBackground(new java.awt.Color(246, 229, 229));
-        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
+        PanelIzquierda.setBackground(new java.awt.Color(246, 229, 229));
+        PanelIzquierda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        BotonSi.setBackground(new java.awt.Color(102, 51, 0));
+        BotonSi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BotonSi.setForeground(new java.awt.Color(255, 255, 255));
+        BotonSi.setText("SI");
+        BotonSi.setFocusPainted(false);
+        BotonSi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSiActionPerformed(evt);
+            }
+        });
+        PanelIzquierda.add(BotonSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 80, 40));
+
+        BotonNo.setBackground(new java.awt.Color(102, 51, 0));
+        BotonNo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BotonNo.setForeground(new java.awt.Color(255, 255, 255));
+        BotonNo.setText("NO");
+        BotonNo.setFocusPainted(false);
+        BotonNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonNoActionPerformed(evt);
+            }
+        });
+        PanelIzquierda.add(BotonNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 80, 40));
+
+        PreguntasTexto.setBackground(new java.awt.Color(173, 205, 173));
+        PreguntasTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        PreguntasTexto.setForeground(new java.awt.Color(0, 0, 0));
+        PreguntasTexto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        PreguntasTexto.setFocusable(false);
+        PanelIzquierda.add(PreguntasTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 480, 120));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 102, 0));
+        jLabel8.setText("Clave Dicotómica");
+        jLabel8.setToolTipText("");
+        PanelIzquierda.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+
+        getContentPane().add(PanelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 320));
+
+        jMenuBar1.setBackground(new java.awt.Color(0, 102, 102));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+
+        MenuOpciones.setBackground(new java.awt.Color(0, 102, 102));
+        MenuOpciones.setForeground(new java.awt.Color(255, 255, 255));
         MenuOpciones.setText("Opciones");
         MenuOpciones.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        MenuInicio.setText("Inicio");
+        MenuInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuInicioActionPerformed(evt);
+            }
+        });
+        MenuOpciones.add(MenuInicio);
 
         MenuCargarArchivo.setText("Cargar Archivo");
         MenuCargarArchivo.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +243,8 @@ public class Ventana2 extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuOpciones);
 
+        MenuAyuda.setBackground(new java.awt.Color(0, 102, 102));
+        MenuAyuda.setForeground(new java.awt.Color(255, 255, 255));
         MenuAyuda.setText("Ayuda");
         MenuAyuda.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -244,13 +261,15 @@ public class Ventana2 extends javax.swing.JFrame {
     private void siguientePregunta(boolean respuesta) {
         // Verificar si actual es null
         if (actual == null) {
-            JOptionPane.showMessageDialog(this, "Error: No se ha cargado correctamente el árbol.");
+            JOptionPane.showMessageDialog(null, "Error: No se ha cargado correctamente el árbol.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Verificar si ya se ha encontrado la especie
         if (actual.especie != null) {
-            JOptionPane.showMessageDialog(this, "Ya se ha encontrado la especie: " + actual.especie + "\nNo se pueden realizar más preguntas.");
+            JOptionPane.showMessageDialog(null, "Ya se ha encontrado la especie: "
+                    + actual.especie + "\nNo se pueden realizar más preguntas.", "Error", JOptionPane.ERROR_MESSAGE);
+
             return; // Salir del método sin hacer nada más
         }
 
@@ -263,13 +282,15 @@ public class Ventana2 extends javax.swing.JFrame {
 
         // Verificar si el nuevo nodo es null
         if (actual == null) {
-            JOptionPane.showMessageDialog(this, "Error: No hay más preguntas disponibles.");
+
+            JOptionPane.showMessageDialog(null, "Error: No hay más preguntas disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Verificar si el nuevo nodo es una hoja (especie)
         if (actual.especie != null) {
-            JOptionPane.showMessageDialog(this, "La especie es: " + actual.especie);
+            PreguntasTexto.setText("La especie es: " + actual.especie);
+
         } else {
             // Actualizar la pregunta en la interfaz
             PreguntasTexto.setText(actual.pregunta);
@@ -277,27 +298,33 @@ public class Ventana2 extends javax.swing.JFrame {
     }
 
     private void cargarNuevaClave() {
-        JFileChooser fileChooser = new JFileChooser();
-        int resultado = fileChooser.showOpenDialog(this);
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            int resultado = fileChooser.showOpenDialog(this);
 
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            File archivo = fileChooser.getSelectedFile();
-            try {
-                arbol = CargadorJSON.cargarArbol(archivo.getAbsolutePath());
-                actual = arbol.getRaiz();
-                PreguntasTexto.setText(actual.pregunta);
-                JOptionPane.showMessageDialog(this, "Nueva clave cargada correctamente.");
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error al cargar el archivo: " + e.getMessage());
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+                File archivo = fileChooser.getSelectedFile();
+                try {
+                    arbol = CargadorJSON.cargarArbol(archivo.getAbsolutePath());
+                    actual = arbol.getRaiz();
+                    PreguntasTexto.setText(actual.pregunta);
+                    JOptionPane.showMessageDialog(null, "Nueva clave dicotómica cargada correctamente.");
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cargar el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
+
     }
 
     private void reiniciarBusqueda() {
         // Volver a la raíz del árbol
         actual = arbol.getRaiz();
         PreguntasTexto.setText(actual.pregunta);
-        JOptionPane.showMessageDialog(this, "Búsqueda reiniciada. Comienza desde la primera pregunta.");
+        JOptionPane.showMessageDialog(null, "Búsqueda reiniciada. Comienza desde la primera pregunta.");
     }
     private void BotonBuscarHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarHashActionPerformed
 
@@ -337,6 +364,11 @@ public class Ventana2 extends javax.swing.JFrame {
     private void MenuReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuReiniciarActionPerformed
         reiniciarBusqueda();
     }//GEN-LAST:event_MenuReiniciarActionPerformed
+
+    private void MenuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuInicioActionPerformed
+        PanelDerecha.setVisible(false);
+        PanelIzquierda.setVisible(true);
+    }//GEN-LAST:event_MenuInicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -387,6 +419,7 @@ public class Ventana2 extends javax.swing.JFrame {
     private javax.swing.JMenu MenuAyuda;
     private javax.swing.JMenuItem MenuBuscar;
     private javax.swing.JMenuItem MenuCargarArchivo;
+    private javax.swing.JMenuItem MenuInicio;
     private javax.swing.JMenuItem MenuIntegrantes;
     private javax.swing.JMenuItem MenuMostrarArbol;
     private javax.swing.JMenu MenuOpciones;

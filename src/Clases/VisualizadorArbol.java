@@ -10,7 +10,6 @@ import EstructurasDeDatos.*;
  * @author Luis
  */
 import org.graphstream.ui.view.Viewer;
-
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
@@ -18,25 +17,33 @@ import org.graphstream.graph.implementations.SingleGraph;
 public class VisualizadorArbol {
 
     private Graph graph;
+    public String styleSheet
+            = "node.especie { fill-color: green; } "
+            + // Estilo para nodos de especie
+            "node.pregunta { fill-color: brown; } "
+            + // Estilo para nodos de pregunta
+            "node { text-size: 18; }"; // Estilo común para todos los nodos
 
     public VisualizadorArbol() {
         // Inicializar el gráfico
         graph = new SingleGraph("Árbol Dicotómico");
-        graph.setAttribute("ui.stylesheet", "node { size: 20px; text-size: 15; }");
     }
 
     public void mostrarArbol(Nodo raiz) {
         System.setProperty("org.graphstream.ui", "swing");
+
         // Limpiar el gráfico si ya tiene nodos
         graph.clear();
 
         // Agregar nodos y aristas recursivamente
         agregarNodosYAristas(raiz, null);
 
+        // Aplicar la hoja de estilos al gráfico
+        graph.setAttribute("ui.stylesheet", styleSheet);
+
         // Mostrar el gráfico en una ventana
         Viewer viewer = graph.display();
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
-        System.setProperty("org.graphstream.ui", "swing");
     }
 
     private void agregarNodosYAristas(Nodo nodoActual, String idPadre) {
@@ -58,6 +65,13 @@ public class VisualizadorArbol {
         if (graph.getNode(idActual) == null) {
             Node node = graph.addNode(idActual);
             node.setAttribute("ui.label", nodoActual.pregunta != null ? nodoActual.pregunta : nodoActual.especie);
+
+            // Asignar clase CSS según el tipo de nodo
+            if (nodoActual.especie != null) {
+                node.setAttribute("ui.class", "especie"); // Especie → Verde
+            } else {
+                node.setAttribute("ui.class", "pregunta"); // Pregunta → Marrón
+            }
         }
 
         // Si hay un nodo padre, agregar una arista entre el padre y el nodo actual

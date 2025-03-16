@@ -15,9 +15,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import EstructurasDeDatos.*;
 
+
 public class CargadorJSON {
 
     public static Arbol cargarArbol(String rutaArchivo) throws IOException {
+
         Arbol arbol = new Arbol();
         FileReader reader = new FileReader(rutaArchivo);
         StringBuilder jsonText = new StringBuilder();
@@ -109,6 +111,7 @@ public class CargadorJSON {
         }
 
         return arbol;
+
     }
 
     private static String obtenerPrimeraPregunta(JSONArray arboles) {
