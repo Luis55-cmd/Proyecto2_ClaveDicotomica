@@ -35,12 +35,13 @@ public class Ventana2 extends javax.swing.JFrame {
         try {
             Arbol arbol = CargadorJSON.cargarArbol("arboles_templados.json");
             arbol.mostrarArbol();
+
             this.arbol = arbol;
             if (arbol.getRaiz() == null) {
                 throw new IllegalStateException("El árbol no tiene una raíz válida.");
             }
             this.actual = arbol.getRaiz();
-            PreguntasTexto.setText(actual.pregunta);
+            PreguntasTexto.setText("¿" + actual.pregunta + "?");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error al cargar el archivo JSON: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -293,7 +294,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
         } else {
             // Actualizar la pregunta en la interfaz
-            PreguntasTexto.setText(actual.pregunta);
+            PreguntasTexto.setText("¿" + actual.pregunta + "?");
         }
     }
 
@@ -307,7 +308,7 @@ public class Ventana2 extends javax.swing.JFrame {
                 try {
                     arbol = CargadorJSON.cargarArbol(archivo.getAbsolutePath());
                     actual = arbol.getRaiz();
-                    PreguntasTexto.setText(actual.pregunta);
+                    PreguntasTexto.setText("¿" + actual.pregunta + "?");
                     JOptionPane.showMessageDialog(null, "Nueva clave dicotómica cargada correctamente.");
                 } catch (IOException e) {
                     JOptionPane.showMessageDialog(null, "Error al cargar el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -323,7 +324,7 @@ public class Ventana2 extends javax.swing.JFrame {
     private void reiniciarBusqueda() {
         // Volver a la raíz del árbol
         actual = arbol.getRaiz();
-        PreguntasTexto.setText(actual.pregunta);
+        PreguntasTexto.setText("¿" + actual.pregunta + "?");
         JOptionPane.showMessageDialog(null, "Búsqueda reiniciada. Comienza desde la primera pregunta.");
     }
     private void BotonBuscarHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarHashActionPerformed
@@ -336,7 +337,17 @@ public class Ventana2 extends javax.swing.JFrame {
     }//GEN-LAST:event_InformacionPlantasActionPerformed
 
     private void BotonBuscarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarArbolActionPerformed
-        // TODO add your handling code here:
+
+        String BuscarPlanta = BuscarNombrePlanta.getText().toUpperCase();
+        String NombrePlanta = arbol.InOrder(BuscarPlanta).toUpperCase();
+
+        
+        if (BuscarPlanta.equals(NombrePlanta)) {
+            InformacionPlantas.setText("ANTECEDENTES");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error: Esa planta no se encuentra.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_BotonBuscarArbolActionPerformed
 
     private void BotonSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiActionPerformed
@@ -354,6 +365,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void MenuCargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCargarArchivoActionPerformed
         cargarNuevaClave();
+        arbol.mostrarArbol();
     }//GEN-LAST:event_MenuCargarArchivoActionPerformed
 
     private void MenuMostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMostrarArbolActionPerformed

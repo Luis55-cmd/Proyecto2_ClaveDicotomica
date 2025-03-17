@@ -20,6 +20,7 @@ public class CargadorJSON {
 
     public static Arbol cargarArbol(String rutaArchivo) throws IOException {
 
+        
         Arbol arbol = new Arbol();
         FileReader reader = new FileReader(rutaArchivo);
         StringBuilder jsonText = new StringBuilder();

@@ -24,32 +24,32 @@ public class Arbol {
         this.raiz = raiz;
     }
 
-    public String buscarPorArbol(String especie, Nodo nodo) {
-        if (nodo == null) {
-            return null;
-        }
+    public String InOrder(String nombre) {
 
-        if (nodo.especie != null && nodo.especie.equals(especie)) {
-            return obtenerCamino(nodo);
-        }
-
-        String resultado = buscarPorArbol(especie, nodo.si);
-        if (resultado != null) {
-            return resultado;
-        }
-
-        return buscarPorArbol(especie, nodo.no);
+        return InOrderRec(raiz, "", nombre);
     }
 
-    private String obtenerCamino(Nodo nodo) {
-        StringBuilder camino = new StringBuilder();
-        while (nodo != null) {
-            if (nodo.pregunta != null) {
-                camino.insert(0, nodo.pregunta + " -> ");
-            }
-            nodo = nodo.no != null ? nodo.no : nodo.si; // Retroceder en el árbol
+    private String InOrderRec(Nodo root, String route, String nombre) {
+
+        if (root.si != null) {
+            route = InOrderRec(root.si, route, nombre);
+
         }
-        return camino.toString();
+
+        
+        if (root.especie != null) {
+            if (root.especie.toUpperCase().equals(nombre)) {
+                
+                route += root.especie;
+            }
+
+        }
+
+        if (root.no != null) {
+            route = InOrderRec(root.no, route, nombre);
+
+        }
+        return route;
     }
 
     public void mostrarArbol() {
