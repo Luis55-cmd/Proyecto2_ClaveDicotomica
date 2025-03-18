@@ -341,8 +341,7 @@ public class Ventana2 extends javax.swing.JFrame {
         String BuscarPlanta = BuscarNombrePlanta.getText().toUpperCase();
         String NombrePlanta = arbol.InOrder(BuscarPlanta).toUpperCase();
 
-        
-        if (BuscarPlanta.equals(NombrePlanta)) {
+        if (BuscarPlanta.equals(NombrePlanta) && !BuscarNombrePlanta.getText().isBlank()) {
             InformacionPlantas.setText("ANTECEDENTES");
         } else {
             JOptionPane.showMessageDialog(null, "Error: Esa planta no se encuentra.", "Error", JOptionPane.ERROR_MESSAGE);
