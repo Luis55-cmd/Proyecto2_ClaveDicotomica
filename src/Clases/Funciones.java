@@ -6,7 +6,7 @@ package Clases;
 
 /**
  *
- * @author Luis
+ * @author Luis, Zadkiel Avendano
  */
 public class Funciones {
     

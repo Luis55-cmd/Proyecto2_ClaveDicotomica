@@ -7,7 +7,7 @@ package Clases;
 import EstructurasDeDatos.*;
 /**
  *
- * @author Luis
+ * @author Luis, Zadkiel Avendano
  */
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.graph.Graph;

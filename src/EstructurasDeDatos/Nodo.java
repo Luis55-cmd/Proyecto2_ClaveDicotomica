@@ -6,7 +6,7 @@ package EstructurasDeDatos;
 
 /**
  *
- * @author Luis
+ * @author Luis, Zadkiel Avendano
  */
 public class Nodo {
 

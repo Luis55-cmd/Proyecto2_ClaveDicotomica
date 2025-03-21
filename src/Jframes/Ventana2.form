@@ -28,6 +28,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MenuInicio">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+H"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Inicio"/>
               </Properties>
               <Events>
@@ -36,6 +39,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuCargarArchivo">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+O"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cargar Archivo"/>
               </Properties>
               <Events>
@@ -44,6 +50,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuMostrarArbol">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+M"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Mostrar Arbol"/>
               </Properties>
               <Events>
@@ -52,6 +61,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuReiniciar">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+R"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Reiniciar"/>
               </Properties>
               <Events>
@@ -60,6 +72,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuBuscar">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+S"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
               <Events>
@@ -86,6 +101,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Integrantes"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuIntegrantesActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -117,7 +135,7 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="PanelDerecha">
+    <Container class="javax.swing.JPanel" name="PanelInicio">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e5" green="e5" red="f6" type="rgb"/>
@@ -288,7 +306,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="PanelIzquierda">
+    <Container class="javax.swing.JPanel" name="PanelBusqueda">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e5" green="e5" red="f6" type="rgb"/>

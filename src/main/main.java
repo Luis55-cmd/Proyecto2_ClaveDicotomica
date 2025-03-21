@@ -4,16 +4,11 @@
  */
 package main;
 
-import Clases.*;
-import EstructurasDeDatos.*;
-
 import Jframes.*;
-import java.io.IOException;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author Luis
+ * @author Luis, Zadkiel Avendano
  */
 public class main {
 

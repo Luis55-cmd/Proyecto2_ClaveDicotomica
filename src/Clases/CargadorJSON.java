@@ -6,7 +6,7 @@ package Clases;
 
 /**
  *
- * @author Luis
+ * @author Luis, Zadkiel Avendano
  */
 import org.json.JSONArray;
 import org.json.JSONObject;

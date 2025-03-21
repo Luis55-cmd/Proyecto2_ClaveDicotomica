@@ -6,7 +6,7 @@ package Jframes;
 
 /**
  *
- * @author Luis
+ * @author Luis, Zadkiel Avendano
  */
 public class Ventana1 extends javax.swing.JFrame {
 
