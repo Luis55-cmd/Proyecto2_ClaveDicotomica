@@ -60,7 +60,6 @@ public class Ventana2 extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelInicio = new javax.swing.JPanel();
-        InformacionPlantas = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         BotonBuscarArbol = new javax.swing.JButton();
         BotonBuscarHash = new javax.swing.JButton();
@@ -68,6 +67,8 @@ public class Ventana2 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Tiempo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        InformacionEspecie = new javax.swing.JTextArea();
         PanelBusqueda = new javax.swing.JPanel();
         BotonSi = new javax.swing.JButton();
         BotonNo = new javax.swing.JButton();
@@ -89,17 +90,6 @@ public class Ventana2 extends javax.swing.JFrame {
         PanelInicio.setBackground(new java.awt.Color(246, 229, 229));
         PanelInicio.setForeground(new java.awt.Color(0, 0, 0));
         PanelInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        InformacionPlantas.setBackground(new java.awt.Color(173, 205, 173));
-        InformacionPlantas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        InformacionPlantas.setForeground(new java.awt.Color(0, 0, 0));
-        InformacionPlantas.setFocusable(false);
-        InformacionPlantas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InformacionPlantasActionPerformed(evt);
-            }
-        });
-        PanelInicio.add(InformacionPlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 340, 140));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 102, 0));
@@ -148,7 +138,18 @@ public class Ventana2 extends javax.swing.JFrame {
         Tiempo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Tiempo.setForeground(new java.awt.Color(51, 102, 0));
         Tiempo.setText("15");
-        PanelInicio.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 70, -1));
+        PanelInicio.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 260, -1));
+
+        InformacionEspecie.setBackground(new java.awt.Color(173, 205, 173));
+        InformacionEspecie.setColumns(20);
+        InformacionEspecie.setForeground(new java.awt.Color(0, 0, 0));
+        InformacionEspecie.setRows(5);
+        InformacionEspecie.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        InformacionEspecie.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        InformacionEspecie.setEnabled(false);
+        jScrollPane1.setViewportView(InformacionEspecie);
+
+        PanelInicio.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 340, 140));
 
         getContentPane().add(PanelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 320));
 
@@ -357,20 +358,22 @@ public class Ventana2 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BotonBuscarHashActionPerformed
 
-    private void InformacionPlantasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformacionPlantasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InformacionPlantasActionPerformed
-
     private void BotonBuscarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarArbolActionPerformed
 
-        String BuscarPlanta = BuscarNombrePlanta.getText().toUpperCase();
-        String NombrePlanta = arbol.InOrder(BuscarPlanta).toUpperCase();
+        // Busca la especie midiendo el tiempo con System.nanoTime()
+        long inicio = System.nanoTime();
+        String pasos = arbol.buscarEspecie(BuscarNombrePlanta.getText());
+        long fin = System.nanoTime();
+        
+        long tiempo = (fin - inicio) / 1000;
 
-        if (BuscarPlanta.equals(NombrePlanta) && !BuscarNombrePlanta.getText().isBlank()) {
-            InformacionPlantas.setText("ANTECEDENTES");
-        } else {
+        // Establece los datos encontrados en la interfaz
+        Tiempo.setText(Long.toString(tiempo) + " microsegundos.");
+        InformacionEspecie.setText(pasos);
+        
+        // Verifica si encontro la especie para mostrar un mensaje de error
+        if ("Especie no encontrada".equals(pasos)) {
             JOptionPane.showMessageDialog(null, "Error: Esa planta no se encuentra.", "Error", JOptionPane.ERROR_MESSAGE);
-
         }
     }//GEN-LAST:event_BotonBuscarArbolActionPerformed
 
@@ -456,7 +459,7 @@ public class Ventana2 extends javax.swing.JFrame {
     private javax.swing.JButton BotonNo;
     private javax.swing.JButton BotonSi;
     private javax.swing.JTextField BuscarNombrePlanta;
-    private javax.swing.JTextField InformacionPlantas;
+    private javax.swing.JTextArea InformacionEspecie;
     private javax.swing.JMenu MenuAyuda;
     private javax.swing.JMenuItem MenuBuscar;
     private javax.swing.JMenuItem MenuCargarArchivo;
@@ -474,5 +477,6 @@ public class Ventana2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

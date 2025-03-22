@@ -30,10 +30,8 @@ public class Arbol {
     }
 
     private String InOrderRec(Nodo root, String route, String nombre) {
-
         if (root.si != null) {
             route = InOrderRec(root.si, route, nombre);
-
         }
 
         
@@ -50,6 +48,30 @@ public class Arbol {
 
         }
         return route;
+    }
+    
+    public String buscarEspecie(String nombre) {
+        return buscarEspecieRec(raiz, nombre.toUpperCase(), "");
+    }
+
+    private String buscarEspecieRec(Nodo root, String nombre, String pasos) {
+    if (root == null){
+        return "Especie no encontrada";
+    }
+    if (root.especie != null && root.especie.toUpperCase().equals(nombre)) {
+        return pasos + "Especie encontrada: " + root.especie;
+    }
+    if (root.pregunta != null) {
+        String rutaSi = buscarEspecieRec(root.si, nombre, pasos + "Pregunta: " + root.pregunta + "\nRespuesta: Sí\n");
+        if (!rutaSi.contains("no encontrada")){
+            return rutaSi;
+        }
+        
+        String rutaNo = buscarEspecieRec(root.no, nombre, pasos + "Pregunta: " + root.pregunta + "\nRespuesta: No\n");
+        return rutaNo;
+    }
+    
+    return "Especie no encontrada";
     }
 
     public void mostrarArbol() {
