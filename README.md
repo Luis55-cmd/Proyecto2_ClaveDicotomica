@@ -24,4 +24,4 @@ Este proyecto consiste en la implementación de una herramienta en Java que perm
 - ✅ Debe implementar una clase `Tabla de Dispersión` (Hash Table) para clasificar los nodos del árbol por el nombre de la especie.
 - ✅ La interfaz gráfica debe ser desarrollada con Java Swing.
 - ✅ El programa debe cargar archivos JSON para la lectura de datos.
-- ❌ El proyecto debe estar documentado con Javadoc.
+- ✅ El proyecto debe estar documentado con Javadoc.
