@@ -1,5 +1,5 @@
 # Proyecto 2: Clave Dicotómica
-Grupo: Luis Guerra y Zadkiel Avedaño
+Grupo: Luis Guerra y Zadkiel Avendaño
 
 Repositorio: [https://github.com/Luis55-cmd/Proyecto1_MetroBuscaminas](https://github.com/Luis55-cmd/Proyecto2_ClaveDicotomica)
 
