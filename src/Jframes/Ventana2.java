@@ -22,6 +22,7 @@ public class Ventana2 extends javax.swing.JFrame {
      */
     private Arbol arbol;
     private Nodo actual;
+    private TablaDispersion tablaHash;
     public static Ventana1 v1;
 
     public Ventana2() {
@@ -34,14 +35,18 @@ public class Ventana2 extends javax.swing.JFrame {
         // Crear el árbol y la interfaz
         try {
             Arbol arbol = CargadorJSON.cargarArbol("arboles_templados.json");
-            arbol.mostrarArbol();
-
+            // arbol.mostrarArbol();
+            
             this.arbol = arbol;
             if (arbol.getRaiz() == null) {
                 throw new IllegalStateException("El árbol no tiene una raíz válida.");
             }
             this.actual = arbol.getRaiz();
             PreguntasTexto.setText("¿" + actual.pregunta + "?");
+            
+            this.tablaHash = new TablaDispersion(101);
+            cargarEspeciesHash(arbol.getRaiz());
+            
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error al cargar el archivo JSON: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -270,6 +275,19 @@ public class Ventana2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cargarEspeciesHash(Nodo nodo){
+        if (nodo == null) {
+            return;
+        }
+        if (nodo.especie != null) {
+            String pasos = arbol.buscarEspecie(nodo.especie);
+            tablaHash.insertar(nodo.especie, pasos);
+        }
+        // Recorrer hijos
+        cargarEspeciesHash(nodo.si);
+        cargarEspeciesHash(nodo.no);
+    }
+    
     private void siguientePregunta(boolean respuesta) {
         // Verificar si actual es null
         if (actual == null) {
@@ -324,6 +342,9 @@ public class Ventana2 extends javax.swing.JFrame {
                 try {
                     arbol = CargadorJSON.cargarArbol(archivo.getAbsolutePath());
                     actual = arbol.getRaiz();
+                    tablaHash = new TablaDispersion(101);
+                    cargarEspeciesHash(arbol.getRaiz());
+                    
                     PreguntasTexto.setText("¿" + actual.pregunta + "?");
                     JOptionPane.showMessageDialog(null, "Nueva clave dicotómica cargada correctamente.");
                 } catch (IOException e) {
@@ -354,8 +375,28 @@ public class Ventana2 extends javax.swing.JFrame {
         this.BotonNo.setEnabled(true);
     }
     private void BotonBuscarHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarHashActionPerformed
-
-
+        String nombre = BuscarNombrePlanta.getText().toUpperCase();
+        
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre de especie", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Busca la especie midiendo el tiempo con System.nanoTime()
+        long inicio = System.nanoTime();
+        String pasos = tablaHash.buscar(nombre);
+        long fin = System.nanoTime();
+        
+        long tiempo = (fin - inicio) / 1000;
+        
+        // Establece los datos encontrados en la interfaz
+        Tiempo.setText(Long.toString(tiempo) + " microsegundos.");
+        if (pasos != null) {
+            InformacionEspecie.setText(pasos);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error: Esa planta no se encuentra.", "Error", JOptionPane.ERROR_MESSAGE);
+            InformacionEspecie.setText("Especie no encontrada");
+        }
     }//GEN-LAST:event_BotonBuscarHashActionPerformed
 
     private void BotonBuscarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarArbolActionPerformed

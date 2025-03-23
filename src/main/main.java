@@ -16,7 +16,7 @@ public class main {
         Ventana1 ventana = new Ventana1();
         ventana.setVisible(true);
         
-
+        
         
     }
 }
