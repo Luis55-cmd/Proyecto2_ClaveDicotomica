@@ -5,6 +5,8 @@
 package Jframes;
 
 /**
+ * Clase que representa la segunda ventana de la aplicación. Esta ventana
+ * permite interactuar con un árbol dicotómico cargado desde un archivo JSON.
  *
  * @author Luis, Zadkiel Avendano
  */
@@ -25,6 +27,10 @@ public class Ventana2 extends javax.swing.JFrame {
     private TablaDispersion tablaHash;
     public static Ventana1 v1;
 
+    /**
+     * Constructor de la clase Ventana2. Inicializa la ventana, carga el árbol
+     * dicotómico desde un archivo JSON y configura la interfaz gráfica.
+     */
     public Ventana2() {
         initComponents();
 
@@ -36,17 +42,17 @@ public class Ventana2 extends javax.swing.JFrame {
         try {
             Arbol arbol = CargadorJSON.cargarArbol("arboles_templados.json");
             // arbol.mostrarArbol();
-            
+
             this.arbol = arbol;
             if (arbol.getRaiz() == null) {
                 throw new IllegalStateException("El árbol no tiene una raíz válida.");
             }
             this.actual = arbol.getRaiz();
             PreguntasTexto.setText("¿" + actual.pregunta + "?");
-            
+
             this.tablaHash = new TablaDispersion(101);
             cargarEspeciesHash(arbol.getRaiz());
-            
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error al cargar el archivo JSON: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -275,7 +281,12 @@ public class Ventana2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cargarEspeciesHash(Nodo nodo){
+    /**
+     * Método para cargar las especies en la tabla de dispersión.
+     *
+     * @param nodo El nodo actual en el recorrido del árbol.
+     */
+    private void cargarEspeciesHash(Nodo nodo) {
         if (nodo == null) {
             return;
         }
@@ -287,7 +298,14 @@ public class Ventana2 extends javax.swing.JFrame {
         cargarEspeciesHash(nodo.si);
         cargarEspeciesHash(nodo.no);
     }
-    
+
+    /**
+     * Avanza a la siguiente pregunta en el árbol de decisiones basado en la
+     * respuesta del usuario.
+     *
+     * @param respuesta La respuesta del usuario (true para "Sí", false para
+     * "No").
+     */
     private void siguientePregunta(boolean respuesta) {
         // Verificar si actual es null
         if (actual == null) {
@@ -320,11 +338,11 @@ public class Ventana2 extends javax.swing.JFrame {
         // Verificar si el nuevo nodo es una hoja (especie)
         if (actual.especie != null) {
             PreguntasTexto.setText("La especie es: " + actual.especie);
-           JOptionPane.showMessageDialog(null, "Ya se encontro la especie: " + actual.especie, "Especie encontrada con exito!", JOptionPane.INFORMATION_MESSAGE);
-           
-           // Deshabilita los botones de preguntas
-           this.BotonSi.setEnabled(false);
-           this.BotonNo.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Ya se encontro la especie: " + actual.especie, "Especie encontrada con exito!", JOptionPane.INFORMATION_MESSAGE);
+
+            // Deshabilita los botones de preguntas
+            this.BotonSi.setEnabled(false);
+            this.BotonNo.setEnabled(false);
 
         } else {
             // Actualizar la pregunta en la interfaz
@@ -332,6 +350,9 @@ public class Ventana2 extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Carga una nueva clave dicotómica desde un archivo JSON.
+     */
     private void cargarNuevaClave() {
         try {
             JFileChooser fileChooser = new JFileChooser();
@@ -344,7 +365,7 @@ public class Ventana2 extends javax.swing.JFrame {
                     actual = arbol.getRaiz();
                     tablaHash = new TablaDispersion(101);
                     cargarEspeciesHash(arbol.getRaiz());
-                    
+
                     PreguntasTexto.setText("¿" + actual.pregunta + "?");
                     JOptionPane.showMessageDialog(null, "Nueva clave dicotómica cargada correctamente.");
                 } catch (IOException e) {
@@ -358,37 +379,50 @@ public class Ventana2 extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Reinicia la búsqueda de especies, volviendo a la primera pregunta del
+     * árbol.
+     */
     private void reiniciarBusqueda() {
         // Verifica si es necesario reiniciar la busqueda
         if (actual == arbol.getRaiz()) {
             JOptionPane.showMessageDialog(null, "Ya te encuentras en la primera pregunta de la busqueda.", "Atencion", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         // Volver a la raíz del árbol
         actual = arbol.getRaiz();
         PreguntasTexto.setText("¿" + actual.pregunta + "?");
         JOptionPane.showMessageDialog(null, "Búsqueda reiniciada. Comienza desde la primera pregunta.");
-        
+
         // Habilita los botones de las preguntas
         this.BotonSi.setEnabled(true);
         this.BotonNo.setEnabled(true);
     }
+
+    /**
+     * Maneja el evento de acción del botón "Buscar en Hash". Busca una especie
+     * en la tabla hash y muestra el tiempo de búsqueda y la información
+     * encontrada.
+     *
+     * @param evt El evento de acción generado al hacer clic en el botón.
+     */
+
     private void BotonBuscarHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarHashActionPerformed
         String nombre = BuscarNombrePlanta.getText().toUpperCase();
-        
+
         if (nombre.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre de especie", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // Busca la especie midiendo el tiempo con System.nanoTime()
         long inicio = System.nanoTime();
         String pasos = tablaHash.buscar(nombre);
         long fin = System.nanoTime();
-        
+
         long tiempo = (fin - inicio) / 1000;
-        
+
         // Establece los datos encontrados en la interfaz
         Tiempo.setText(Long.toString(tiempo) + " microsegundos.");
         if (pasos != null) {
@@ -399,60 +433,113 @@ public class Ventana2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BotonBuscarHashActionPerformed
 
+    /**
+     * Maneja el evento de acción del botón "Buscar en Árbol". Busca una especie
+     * en el árbol y muestra el tiempo de búsqueda y la información encontrada.
+     *
+     * @param evt El evento de acción generado al hacer clic en el botón.
+     */
     private void BotonBuscarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarArbolActionPerformed
 
         // Busca la especie midiendo el tiempo con System.nanoTime()
         long inicio = System.nanoTime();
         String pasos = arbol.buscarEspecie(BuscarNombrePlanta.getText());
         long fin = System.nanoTime();
-        
+
         long tiempo = (fin - inicio) / 1000;
 
         // Establece los datos encontrados en la interfaz
         Tiempo.setText(Long.toString(tiempo) + " microsegundos.");
         InformacionEspecie.setText(pasos);
-        
+
         // Verifica si encontro la especie para mostrar un mensaje de error
         if ("Especie no encontrada".equals(pasos)) {
             JOptionPane.showMessageDialog(null, "Error: Esa planta no se encuentra.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotonBuscarArbolActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "Sí". Avanza a la siguiente pregunta
+     * en el árbol de decisiones con una respuesta afirmativa.
+     *
+     * @param evt El evento de acción generado al hacer clic en el botón.
+     */
     private void BotonSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiActionPerformed
         siguientePregunta(true);
     }//GEN-LAST:event_BotonSiActionPerformed
-
+    /**
+     * Maneja el evento de acción del botón "No". Avanza a la siguiente pregunta
+     * en el árbol de decisiones con una respuesta negativa.
+     *
+     * @param evt El evento de acción generado al hacer clic en el botón.
+     */
     private void BotonNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNoActionPerformed
         siguientePregunta(false);
     }//GEN-LAST:event_BotonNoActionPerformed
-
+    /**
+     * Maneja el evento de acción del menú "Buscar". Muestra el panel de
+     * búsqueda y oculta el panel de inicio.
+     *
+     * @param evt El evento de acción generado al seleccionar la opción del
+     * menú.
+     */
     private void MenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBuscarActionPerformed
         PanelInicio.setVisible(true);
         PanelBusqueda.setVisible(false);
     }//GEN-LAST:event_MenuBuscarActionPerformed
-
+    /**
+     * Maneja el evento de acción del menú "Cargar Archivo". Carga una nueva
+     * clave dicotómica desde un archivo JSON.
+     *
+     * @param evt El evento de acción generado al seleccionar la opción del
+     * menú.
+     */
     private void MenuCargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCargarArchivoActionPerformed
         cargarNuevaClave();
         arbol.mostrarArbol();
     }//GEN-LAST:event_MenuCargarArchivoActionPerformed
-
+    /**
+     * Maneja el evento de acción del menú "Mostrar Árbol". Muestra una
+     * visualización gráfica del árbol cargado.
+     *
+     * @param evt El evento de acción generado al seleccionar la opción del
+     * menú.
+     */
     private void MenuMostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMostrarArbolActionPerformed
         VisualizadorArbol visualizador = new VisualizadorArbol();
         visualizador.mostrarArbol(arbol.getRaiz());
     }//GEN-LAST:event_MenuMostrarArbolActionPerformed
-
+    /**
+     * Maneja el evento de acción del menú "Reiniciar Búsqueda". Reinicia la
+     * búsqueda de especies, volviendo a la primera pregunta del árbol.
+     *
+     * @param evt El evento de acción generado al seleccionar la opción del
+     * menú.
+     */
     private void MenuReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuReiniciarActionPerformed
         reiniciarBusqueda();
     }//GEN-LAST:event_MenuReiniciarActionPerformed
 
+    /**
+     * Maneja el evento de acción del menú "Inicio". Muestra el panel de inicio
+     * y oculta el panel de búsqueda.
+     *
+     * @param evt El evento de acción generado al seleccionar la opción del
+     * menú.
+     */
     private void MenuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuInicioActionPerformed
         PanelInicio.setVisible(false);
         PanelBusqueda.setVisible(true);
     }//GEN-LAST:event_MenuInicioActionPerformed
-
+    /**
+     * Maneja el evento de acción del menú "Integrantes". Muestra un diálogo con
+     * los nombres de los integrantes del grupo.
+     *
+     * @param evt El evento de acción generado al seleccionar la opción del
+     * menú.
+     */
     private void MenuIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIntegrantesActionPerformed
-       // Muestra los integrantes del grupo
-       JOptionPane.showMessageDialog(null, "Integrantes del grupo:\nLuis Guerra y Zadkiel Avendano", "Integrantes", JOptionPane.INFORMATION_MESSAGE);
+        // Muestra los integrantes del grupo
+        JOptionPane.showMessageDialog(null, "Integrantes del grupo:\nLuis Guerra y Zadkiel Avendano", "Integrantes", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_MenuIntegrantesActionPerformed
 
     /**

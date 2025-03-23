@@ -5,17 +5,39 @@
 package EstructurasDeDatos;
 
 /**
+ * La clase Nodo representa un nodo en una estructura de datos de árbol binario.
+ * Cada nodo puede ser un nodo intermedio (con una pregunta) o un nodo hoja (con
+ * una especie).
  *
  * @author Luis, Zadkiel Avendano
  */
 public class Nodo {
 
-    public String pregunta;  // La pregunta asociada al nodo (si es un nodo intermedio)
-    public String especie;   // La especie asociada al nodo (si es un nodo hoja)
-    public Nodo si;         // Referencia al nodo hijo para la respuesta "Sí"
-    public Nodo no;         // Referencia al nodo hijo para la respuesta "No"
+    /**
+     * La pregunta asociada al nodo (si es un nodo intermedio).
+     */
+    public String pregunta;
 
-    // Constructor para nodos intermedios (con pregunta)
+    /**
+     * La especie asociada al nodo (si es un nodo hoja).
+     */
+    public String especie;
+
+    /**
+     * Referencia al nodo hijo para la respuesta "Sí".
+     */
+    public Nodo si;
+
+    /**
+     * Referencia al nodo hijo para la respuesta "No".
+     */
+    public Nodo no;
+
+    /**
+     * Constructor para nodos intermedios (con pregunta).
+     *
+     * @param pregunta La pregunta asociada al nodo intermedio.
+     */
     public Nodo(String pregunta) {
         this.pregunta = pregunta;
         this.especie = null;
@@ -23,7 +45,14 @@ public class Nodo {
         this.no = null;
     }
 
-    // Constructor para nodos hoja (con especie)
+    /**
+     * Constructor para nodos hoja (con especie).
+     *
+     * @param especie La especie asociada al nodo hoja.
+     * @param esEspecie Un indicador booleano para diferenciar este constructor
+     * del de nodos intermedios. No se utiliza directamente en la lógica del
+     * nodo.
+     */
     public Nodo(String especie, boolean esEspecie) {
         this.especie = especie;
         this.pregunta = null;
@@ -31,7 +60,13 @@ public class Nodo {
         this.no = null;
     }
 
-    // Método para verificar si el nodo es una hoja (especie)
+    /**
+     * Verifica si el nodo es una hoja (es decir, si tiene una especie
+     * asociada).
+     *
+     * @return `true` si el nodo es una hoja (tiene una especie), `false` en
+     * caso contrario.
+     */
     public boolean esHoja() {
         return especie != null;
     }

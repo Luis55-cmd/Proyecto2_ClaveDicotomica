@@ -5,16 +5,21 @@
 package Jframes;
 
 /**
+ * La clase Ventana1 representa una ventana de la interfaz gráfica de usuario
+ * (GUI). Esta ventana está centrada en la pantalla y no permite cambiar su
+ * tamaño.
  *
  * @author Luis, Zadkiel Avendano
  */
 public class Ventana1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Ventana2
+     * Constructor de la clase Ventana1. Inicializa los componentes de la
+     * ventana, la centra en la pantalla y deshabilita la capacidad de
+     * redimensionarla.
      */
     public Ventana1() {
-        
+
         initComponents();
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
         setResizable(false); // Impide cambiar la dimension de la ventana
@@ -74,6 +79,13 @@ public class Ventana1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * Maneja el evento de acción del botón jButton1. Oculta la ventana actual
+     * (Ventana1) y muestra una nueva instancia de Ventana2.
+     *
+     * @param evt El evento de acción generado al hacer clic en el botón.
+     */
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);

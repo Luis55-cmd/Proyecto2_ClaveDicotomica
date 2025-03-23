@@ -6,6 +6,8 @@ package Clases;
 
 import EstructurasDeDatos.*;
 /**
+ * Clase encargada de visualizar un árbol dicotómico utilizando la librería
+ * GraphStream.
  *
  * @author Luis, Zadkiel Avendano
  */
@@ -24,11 +26,20 @@ public class VisualizadorArbol {
             + // Estilo para nodos de pregunta
             "node { text-size: 18; }"; // Estilo común para todos los nodos
 
+    /**
+     * Constructor de la clase VisualizadorArbol. Inicializa el gráfico para la
+     * visualización del árbol.
+     */
     public VisualizadorArbol() {
         // Inicializar el gráfico
         graph = new SingleGraph("Árbol Dicotómico");
     }
 
+    /**
+     * Muestra el árbol dicotómico en una ventana gráfica.
+     *
+     * @param raiz El nodo raíz del árbol que se desea visualizar.
+     */
     public void mostrarArbol(Nodo raiz) {
         System.setProperty("org.graphstream.ui", "swing");
 
@@ -46,6 +57,12 @@ public class VisualizadorArbol {
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
 
+    /**
+     * Método recursivo para agregar nodos y aristas al gráfico.
+     *
+     * @param nodoActual El nodo actual que se está procesando.
+     * @param idPadre El ID del nodo padre, o null si es la raíz.
+     */
     private void agregarNodosYAristas(Nodo nodoActual, String idPadre) {
         if (nodoActual == null) {
             return;

@@ -5,6 +5,7 @@
 package Clases;
 
 /**
+ * Clase encargada de cargar un árbol de decisiones desde un archivo JSON.
  *
  * @author Luis, Zadkiel Avendano
  */
@@ -15,12 +16,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import EstructurasDeDatos.*;
 
-
 public class CargadorJSON {
 
+    /**
+     * Carga un árbol de decisiones desde un archivo JSON.
+     *
+     * @param rutaArchivo La ruta del archivo JSON que contiene la estructura
+     * del árbol.
+     * @return Un objeto de tipo Arbol que representa la estructura cargada
+     * desde el JSON.
+     * @throws IOException Si ocurre un error al leer el archivo o si el formato
+     * del JSON no es válido.
+     */
     public static Arbol cargarArbol(String rutaArchivo) throws IOException {
 
-        
         Arbol arbol = new Arbol();
         FileReader reader = new FileReader(rutaArchivo);
         StringBuilder jsonText = new StringBuilder();
@@ -115,6 +124,13 @@ public class CargadorJSON {
 
     }
 
+    /**
+     * Obtiene la primera pregunta del JSONArray que contiene las especies y sus
+     * preguntas.
+     *
+     * @param arboles El JSONArray que contiene las especies y sus preguntas.
+     * @return La primera pregunta del JSONArray.
+     */
     private static String obtenerPrimeraPregunta(JSONArray arboles) {
         // Obtener la primera pregunta del primer elemento del JSON
         JSONObject primeraEspecie = arboles.getJSONObject(0);
@@ -124,6 +140,14 @@ public class CargadorJSON {
         return primeraPregunta.keys().next();
     }
 
+    /**
+     * Busca un nodo en un array de nodos por su texto de pregunta.
+     *
+     * @param nodos El array de nodos en el que se buscará.
+     * @param numNodos El número de nodos en el array.
+     * @param textoPregunta El texto de la pregunta que se busca.
+     * @return El nodo que contiene la pregunta, o null si no se encuentra.
+     */
     private static Nodo buscarNodo(Nodo[] nodos, int numNodos, String textoPregunta) {
         for (int i = 0; i < numNodos; i++) {
             if (nodos[i].pregunta.equals(textoPregunta)) {
